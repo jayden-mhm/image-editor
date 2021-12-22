@@ -1,0 +1,94 @@
+<html>
+          <head>
+              <title>Photo Editor</title>
+              <link rel='stylesheet' href="style.css"> 
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+              <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Special+Elite|Alfa+Slab+One|Cabin+Sketch|Lobster|Luckiest+Guy|Passion+One|Zilla+Slab+Highlight|Pacifico" rel="stylesheet">
+          </head>
+          <body>
+              <img class='logo' src='camera.png'>  
+              <h1>Photo editor</h1>
+              <div class='container'>
+                  <div class='tools' id='picker'>
+                      <h1>Choose photo</h1>
+                      <label for='url'>Enter the image url here:</label>
+                      <input id='url' type='text' class='textInput'>
+                    
+                      <button class='submitBtn'>Submit</button>
+                      <p>Or choose one of the following:</p>
+                      <input type='radio' id='image1' name='image' class='imageInput' value='dsc09285.jpg'>
+                      <label for='image1'><img class='thumb' src='dsc09285.jpg'></label>
+                 <input type='radio' id='image2' name='image' class='imageInput' value='bugatti-chiron alice.jpg'>
+                      <label for='image2'><img class='thumb' src='bugatti-chiron-alice.jpg'></label>
+    <input type='radio' id='image3' name='image' class='imageInput' value='Air-Jordan-4-Off-White-Sail-Cream.jpg'>
+                      <label for='image3'><img class='thumb' src='Air-Jordan-4-Off-White-Sail-Cream.jpg'></label>
+                      <input type='radio' id='image4' name='image' class='imageInput' value='gettyimages-625800902-612x612-1594823980.jpg'>
+                <label for='image4'><img class='thumb' src='gettyimages-625800902-612x612-1594823980.jpg'></label>
+                  <input type='radio' id='image5' name='image' class='imageInput' value='ezgif.com-resize36.jpg'>
+                      <label for='image5'><img class='thumb' src='ezgif.com-resize36.jpg'></label>
+                     <input type='radio' id='image6' name='image' class='imageInput' value='bmw-m4-gts-ol053.jpg'>
+                      <label for='image6'><img class='thumb'src='bmw-m4-gts-ol053.jpg'></label>
+                  </div>
+                  <div class='tools' id='editor'>
+                      <label for='captionInput'>Enter the text:</label>
+                      <input type='text' id='captionInput' class='textInput'>
+                    <label for='fontSize'>FontSize:</label>
+                    <input type='inputType1' id='fontSize' class='textInput'>
+                    
+                    <label for='color'>Color:</label>
+                    <input type='color' id='color'>
+                    
+                    <select id='font'>
+                      <option style='font-family:Lobster'>
+                        Lobster
+                        </option>
+                        <option style='font-family:Bubblegum Sans'>
+                          Bubblegum Sans
+                      </option>
+                      </select>
+                      <button class="textBtn">Add text</button>
+                  </div>
+                  <div class='canvas'>
+                      <img src='placeholder.png' id='image'>
+                      <p class="caption"></p>
+                  </div>
+              </div>
+      
+              <script>
+                  $('#editor').hide();
+      
+                  function addImage(){
+                      var url = $('#url').val();
+                      $('#image').attr('src', url);
+                      $('#picker').hide();
+                      $('#editor').fadeIn();
+                  }
+                  $('.submitBtn').click(addImage);
+      
+                  function pickImage(){
+                      var url = $('.imageInput:checked').val();
+                      $('#image').attr('src', url);
+                      $('#picker').hide();
+                      $('#editor').fadeIn();
+                  }
+                  $('.imageInput').click(pickImage);
+      
+                  function addText(){
+                      var caption = $('#captionInput').val();
+                      $('.caption').text(caption);
+                    var size = $('#fontSize').val();
+                    var font = $('#font').val();
+                    var color = $('#color').val();
+                    var textCss = {
+                      'font-size':size,
+                      'font-family':font,
+                      'color':color
+                    }
+                    $('.caption').css(textCss);
+                  }
+                  $('.textBtn').click(addText);
+                $('.caption').draggable();
+              </script>
+          </body>
+      </html>
